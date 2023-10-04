@@ -1,0 +1,10 @@
+Sistema Controle de Cinema
+
+Desenvolva um sistema de controle de cinema em C++ com arquivos cpp, hpp e main seguindo os requisitos:
+
+- Um cinema pode ter muitas salas, sendo necessário, portanto, registrar informações a respeito de cada uma,  sua capacidade (numero de assentos disponíveis)
+- O cinema apresenta muitos filmes. Um filme tem informações como titulo  e duração. Assim, sempre que um filme for ser apresentado, deve-se registrá-lo também. 
+- Um filme tem um único gênero, mas um gênero pode se referir a muitos filmes. 
+- Um filme pode ter muitos atores atuando nele, e um ator pode atuar em muitos filmes. Em cada filme, um ator interpretará um ou mais papéis diferentes. Por uma questão de propaganda, é útil anunciar os principais atores do filme e que papéis eles interpretam.
+- Um mesmo filme pode ser apresentado em diferentes salas e em horários diferentes. Cada apresentação em uma determinada sala e horário é chamado de Sessão. Um filme sendo apresentado em uma sessão tem um conjunto máximo de ingressos, determinado pela capacidade da sala. 
+- Os clientes do cinema podem comprar ou não ingressos para assistir a uma sessão. O funcionário deve intermediar a compra do ingresso. Um ingresso deve conter informações como o tipo de ingresso (meio ingresso ou ingresso inteiro). Além disso, um cliente só pode comprar ingressos para sessão ainda não encerradas. 
