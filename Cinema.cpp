@@ -1,4 +1,6 @@
 #include "cinema.hpp"
+#include "Ator.hpp"
+
 
 Filme::Filme(const std::string& titulo, int duracao, Genero* genero)
     : titulo(titulo), duracao(duracao), genero(genero) {}

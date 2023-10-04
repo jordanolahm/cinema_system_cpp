@@ -1,79 +1,31 @@
 #ifndef CINEMA_HPP
 #define CINEMA_HPP
 
+// import STL libs
+
 #include <iostream>
 #include <vector>
 #include <string>
 #include <unordered_map>
 
-class Genero {
-public:
-    Genero(const std::string& nome) : nome(nome) {}
-    const std::string& getNome() const { return nome; }
+//import libs 
 
-private:
-    std::string nome;
-};
-
-class Filme {
-public:
-    Filme(const std::string& titulo, int duracao, Genero* genero);
-    const std::string& getTitulo() const { return titulo; }
-    int getDuracao() const { return duracao; }
-    const Genero* getGenero() const { return genero; }
-    void adicionarAtor(Ator* ator, const std::string& papel);
-
-private:
-    std::string titulo;
-    int duracao;
-    Genero* genero;
-    std::unordered_map<Ator*, std::string> elenco;
-};
-
-class Sala {
-public:
-    Sala(int numero, int capacidade);
-    int getNumero() const { return numero; }
-    int getCapacidade() const { return capacidade; }
-
-private:
-    int numero;
-    int capacidade;
-};
-
-class Sessao {
-public:
-    Sessao(Filme* filme, Sala* sala, const std::string& horario, int capacidade);
-    const Filme* getFilme() const { return filme; }
-    const Sala* getSala() const { return sala; }
-    const std::string& getHorario() const { return horario; }
-    int getCapacidade() const { return capacidade; }
-    int getIngressosVendidos() const { return ingressosVendidos; }
-    bool sessaoEncerrada() const { return ingressosVendidos >= capacidade; }
-    bool venderIngresso(bool meioIngresso);
-
-private:
-    Filme* filme;
-    Sala* sala;
-    std::string horario;
-    int capacidade;
-    int ingressosVendidos;
-};
-
-class Ingresso {
-public:
-    Ingresso(Sessao* sessao, bool meioIngresso);
-    const Sessao* getSessao() const { return sessao; }
-    bool isMeioIngresso() const { return meioIngresso; }
-
-private:
-    Sessao* sessao;
-    bool meioIngresso;
-};
+#include "Ator.hpp"
+#include "Filme.hpp"
+#include "Sala.hpp"
+#include "Sessao.hpp"
+#include "Ingresso.hpp"
+#include "Genero.hpp"
 
 class Cinema {
+
 public:
+    //construtor
     Cinema();
+
+    //destrutor
+    ~Cinema(); 
+    
     void cadastrarFilme(const std::string& titulo, int duracao, Genero* genero);
     void cadastrarAtor(const std::string& nome);
     void criarSala(int numero, int capacidade);
