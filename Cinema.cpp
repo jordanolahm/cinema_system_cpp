@@ -80,3 +80,4 @@ void Cinema::listarFilmesPorGenero(const std::string& generoNome) const {
         }
     }
 }
+

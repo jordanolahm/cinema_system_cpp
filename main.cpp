@@ -1,4 +1,5 @@
 #include "cinema.hpp"
+#include "ator.hpp"
 
 int main() {
     Cinema cinema;

@@ -1,3 +1,6 @@
+#ifndef ATOR_HPP
+#define ATOR_HPP
+
 
 #include <iostream>
 #include <vector>
@@ -6,9 +9,13 @@
 
 class Ator {
 public:
-    Ator(const std::string& nome) : nome(nome) {}
-    const std::string& getNome() const { return nome; }
+
+    Ator(const std::string& nome); 
+    
+    const std::string& getNome() const; 
 
 private:
     std::string nome;
 };
+
+#endif // ATOR_HPP
