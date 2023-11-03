@@ -1,6 +1,6 @@
 # Sistema Controle de Cinema
 
-## Tecnologia : Projeto C++ seguindo padrão de projeto visto em sala. 
+## [Tecnologia : Projeto C++ seguindo padrão de projeto visto em sala.](https://prlalmeida.com.br/2021/10/29/cpp/)
 
 ### Lista de requisitos a serem vencidos
 
