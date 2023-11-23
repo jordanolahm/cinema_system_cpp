@@ -89,182 +89,181 @@ Cardinalidade: 1:N (Um cliente pode comprar vários ingressos, mas cada ingresso
 
 ##Diagrama de classe Definido
 
-###Cinema: Classe principal, onde relaciona os gerenciadores trazendo para si, as informações gerais do cinema em termos de operação (salas, filmes, sessões).
+### Cinema: Classe principal, onde relaciona os gerenciadores trazendo para si, as informações gerais do cinema em termos de operação (salas, filmes, sessões).
 
 >Atributos Privados:
-salas: std::list<std::shared_ptr<Sala>>
-filmes: std::list<std::shared_ptr<Filme>>
-sessoes: std::list<std::shared_ptr<Sessao>>
-gerenciadorFilmes: std::shared_ptr<GerenciadorFilmes>
-gerenciadorSalas: std::shared_ptr<GerenciadorSalas>
-gerenciadorClientes: std::shared_ptr<GerenciadorClientes>
-gerenciadorSessao: std::shared_ptr<GerenciadorSessao>
+
+>salas: std::list<std::shared_ptr<Sala>>
+>filmes: std::list<std::shared_ptr<Filme>>
+>sessoes: std::list<std::shared_ptr<Sessao>>
+>gerenciadorFilmes: std::shared_ptr<GerenciadorFilmes>
+>gerenciadorSalas: std::shared_ptr<GerenciadorSalas>
+>gerenciadorClientes: std::shared_ptr<GerenciadorClientes>
+>gerenciadorSessao: std::shared_ptr<GerenciadorSessao>
 
 >Métodos Públicos:
-obterSalas(): std::list<std::shared_ptr<Sala>>
-obterFilmes(): std::list<std::shared_ptr<Filme>>
-obterSessoes(): std::list<std::shared_ptr<Sessao>>
-obterGerenciadorSalas(): std::shared_ptr<GerenciadorSalas>
-obterGerenciadorFilmes(): std::shared_ptr<GerenciadorFilmes>
-obterGerenciadorClientes(): std::shared_ptr<GerenciadorClientes>
-obterGerenciadorSessao(): std::shared_ptr<GerenciadorSessao>
+>obterSalas(): std::list<std::shared_ptr<Sala>>
+>obterFilmes(): std::list<std::shared_ptr<Filme>>
+>obterSessoes(): std::list<std::shared_ptr<Sessao>>
+>obterGerenciadorSalas(): std::shared_ptr<GerenciadorSalas>
+>obterGerenciadorFilmes(): std::shared_ptr<GerenciadorFilmes>
+>obterGerenciadorClientes(): std::shared_ptr<GerenciadorClientes>
+>obterGerenciadorSessao(): std::shared_ptr<GerenciadorSessao>
 
 
-###GerenciadorFilmes: Classe responsável por gerenciar o filme de acordo com a lista de filmes existentes. 
+### GerenciadorFilmes: Classe responsável por gerenciar o filme de acordo com a lista de filmes existentes. 
 
 >Atributos Privados:
-sessoes: std::list<std::shared_ptr<Filme>>
+>sessoes: std::list<std::shared_ptr<Filme>>
 
 >Métodos Públicos:
-cadastrarFilme(const std::shared_ptr<Filme>&): void
-listarTodosFilmes(): std::list<std::shared_ptr<Filme>>
-removerFilme(const std::shared_ptr<Filme>&): void
+>cadastrarFilme(const std::shared_ptr<Filme>&): void
+>listarTodosFilmes(): std::list<std::shared_ptr<Filme>>
+>removerFilme(const std::shared_ptr<Filme>&): void
 
-###Filme: Classe responsável por relacionar um elenco de atores na sua estrutura. No sistema relaciona sessão e sala.  
+### Filme: Classe responsável por relacionar um elenco de atores na sua estrutura. No sistema relaciona sessão e sala.  
 >Atributos Privados:
 
-titulo: std::string
-duracao: string
-genero: std::string
-classificacaoEtaria: int
-atores: std::vector<std::shared_ptr<Ator>>
+>titulo: std::string
+>duracao: string
+>genero: std::string
+>classificacaoEtaria: int
+>atores: std::vector<std::shared_ptr<Ator>>
 
 >Métodos Públicos:
-getTitulo(): std::string
-getDuracao(): int
-getGenero(): std::string
-getClassificacaoEtaria(): int
-getAtores(): std::vector<std::shared_ptr<Ator>>
-setTitulo(const std::string&): void
-setDuracao(int): void
-setGenero(const std::string&): void
-setClassificacaoEtaria(int): void
+>getTitulo(): std::string
+>getDuracao(): int
+>getGenero(): std::string
+>getClassificacaoEtaria(): int
+>getAtores(): std::vector<std::shared_ptr<Ator>>
+>setTitulo(const std::string&): void
+>setDuracao(int): void
+>setGenero(const std::string&): void
+>setClassificacaoEtaria(int): void
 
-adicionarAtor(const std::shared_ptr<Ator>&): void
-removerAtor(const std::shared_ptr<Ator>&): void
 
-###Ator: Classe genérica que representa ator ou atriz de um filme. 
+### Ator: Classe genérica que representa ator ou atriz de um filme. 
 
 >Atributos Privados:
-nome: std::string
-papel: std:: string
+>nome: std::string
+>papel: std:: string
 
 >Métodos Públicos:
-getNome(): std::string
-setNome(const std::string&): void
-getPapel(): std::string
-setPapel(const std::string&): void
+>getNome(): std::string
+>setNome(const std::string&): void
+>getPapel(): std::string
+>setPapel(const std::string&): void
 
 
-###Genero: Classe genérica que representa genero de um determinado filme. 
+### Genero: Classe genérica que representa genero de um determinado filme. 
 
 >Atributos Privados:
-nome: std::string
+>nome: std::string
 
 >Métodos Públicos:
-getNome(): std::string
-setNome(const std::string&): void
+>getNome(): std::string
+>setNome(const std::string&): void
 
 
-###Classificação: Classe genérica que representa classificação etaria de um filme. 
+### Classificação: Classe genérica que representa classificação etaria de um filme. 
 
 >Atributos Privados:
-descricao: std::string
-idadeMinima: std::unsigned int
+>descricao: std::string
+>idadeMinima: std::unsigned int
 
 >Métodos Públicos:
-getDescricao(): std::string
-setDescricao(const std::string&): void
-getIdadeMinima(): unsigned int
-setIdadeMinima(idadeMinima:unsigned int): void
+>getDescricao(): std::string
+>setDescricao(const std::string&): void
+>getIdadeMinima(): unsigned int
+>setIdadeMinima(idadeMinima:unsigned int): void
 
 
-###GerenciadorSalas: classe que gerencia as salas do cinema, efetuar ações com o objeto de Sala. 
+### GerenciadorSalas: classe que gerencia as salas do cinema, efetuar ações com o objeto de Sala. 
 
 >Atributos Privados:
-salas: std::list<std::shared_ptr<Sala>>
+>salas: std::list<std::shared_ptr<Sala>>
 
 >Métodos Públicos:
-cadastrarSala(const std::shared_ptr<Sala>&): void
-listarTodasSalas(): std::list<std::shared_ptr<Sala>>
-removerSala(const std::shared_ptr<Sala>&): void
+>cadastrarSala(const std::shared_ptr<Sala>&): void
+>listarTodasSalas(): std::list<std::shared_ptr<Sala>>
+>removerSala(const std::shared_ptr<Sala>&): void
 
 
-###Sala: classe responsável por construir as características de uma sala de cinema com identificação e capacidade. 
+### Sala: classe responsável por construir as características de uma sala de cinema com identificação e capacidade. 
 
 >Atributos Privados:
-numero: unsigned int
-capacidade: unsigned short int
+>numero: unsigned int
+>capacidade: unsigned short int
 
 >Métodos Públicos:
-getNumero(): unsigned int
-getCapacidade(): unsigned short int
+>getNumero(): unsigned int
+>getCapacidade(): unsigned short int
 
 
-###GerenciadorSessao: classe que gerencia Sessao, utilizada para efetuar ações com o objeto de Sessao. 
+### GerenciadorSessao: classe que gerencia Sessao, utilizada para efetuar ações com o objeto de Sessao. 
 
 >Atributos Privados:
-sessoes: std::list<std::shared_ptr<Sessao>>
+>sessoes: std::list<std::shared_ptr<Sessao>>
 
 >Métodos Públicos:
-cadastrarSessao(const std::shared_ptr<Sessao>&): void
-listarTodasSessoes(): std::list<std::shared_ptr<Sessao>>
-removerSessao(const std::shared_ptr<Sessao>&): void
+>cadastrarSessao(const std::shared_ptr<Sessao>&): void
+>listarTodasSessoes(): std::list<std::shared_ptr<Sessao>>
+>removerSessao(const std::shared_ptr<Sessao>&): void
 
-###Sessao: Classe que possuir as informações de uma sessão de cinema. Quando existir, apresenta um filme e está numa sala. Apresenta quantidade limitada de ingressos, quando limitada, deve estar lotada. Sempre aberta quando construída. 
+### Sessao: Classe que possuir as informações de uma sessão de cinema. Quando existir, apresenta um filme e está numa sala. Apresenta quantidade limitada de ingressos, quando limitada, deve estar lotada. Sempre aberta quando construída. 
 
 >Atributos Privados:
-sala: std::shared_ptr<Sala>
-filme: std::shared_ptr<Filme>
-horario: std::string
-ingressosDisponiveis: int
-status: StatusSessao
+>sala: std::shared_ptr<Sala>
+>filme: std::shared_ptr<Filme>
+>horario: std::string
+>ingressosDisponiveis: int
+>status: StatusSessao
 
 >Métodos Públicos:
-getHorario(): std::string
-getStatus(): StatusSessao
-abrirSessao(): void
-fecharSessao(): void
-lotarSessao(): void
-classificarFilme(const std::shared_ptr<Filme>&, int): void
+>getHorario(): std::string
+>getStatus(): StatusSessao
+>abrirSessao(): void
+>fecharSessao(): void
+>lotarSessao(): void
+>classificarFilme(const std::shared_ptr<Filme>&, int): void
 
 >StatusSessao (Enum): Representa o status da sessao.
 Aberta, Fechada ou Lotada
 
-###GerenciadorClientes: Classes que gerencia os objetos da classe sessão, utilizada para efetuar operações. 
+### GerenciadorClientes: Classes que gerencia os objetos da classe sessão, utilizada para efetuar operações. 
 
 >Atributos Privados:
-clientes: std::list<std::shared_ptr<Cliente>>
+>clientes: std::list<std::shared_ptr<Cliente>>
 
 >Métodos Públicos:
-cadastrarCliente(const std::shared_ptr<Cliente>&): void
-listarTodosClientes(): std::list<std::shared_ptr<Cliente>>
-removerCliente(const std::shared_ptr<Cliente>&): void
+>cadastrarCliente(const std::shared_ptr<Cliente>&): void
+>listarTodosClientes(): std::list<std::shared_ptr<Cliente>>
+>removerCliente(const std::shared_ptr<Cliente>&): void
 
 
-###Cliente: classe responsavel por construir a estrutura do cliente. Cliente deve possuir caracteristicas de uma pessoa, pode possuir um ou mais ingressos.
+### Cliente: classe responsavel por construir a estrutura do cliente. Cliente deve possuir caracteristicas de uma pessoa, pode possuir um ou mais ingressos.
 
 >Atributos Privados:
-nome: std::string
-idade: int
-genero: std::string
-cpf: uint64_t
-std::list<std::shared_ptr<Ingresso>>
+>nome: std::string
+>idade: int
+>genero: std::string
+>cpf: uint64_t
+>std::list<std::shared_ptr<Ingresso>>
 
 >Métodos Públicos:
-comprarIngresso(const std::shared_ptr<Sessao>&, TipoIngresso): std::list<std::shared_ptr<Ingresso>>
-listarIngressos(): std::list<std::shared_ptr<Ingresso>>
+>comprarIngresso(const std::shared_ptr<Sessao>&, TipoIngresso): std::list<std::shared_ptr<Ingresso>>
+>listarIngressos(): std::list<std::shared_ptr<Ingresso>>
 
 
-###Ingresso: classe responsável por construir as informacoes de um ingresso. 
+### Ingresso: classe responsável por construir as informacoes de um ingresso. 
 
 >Atributos Privados:
-tipo: TipoIngresso
-sessao: std::shared_ptr<Sessao>
+>tipo: TipoIngresso
+>sessao: std::shared_ptr<Sessao>
 
 >Métodos publicos: 
-getTipo(): TipoIngresso
-getSessao(): Sessao
+>getTipo(): TipoIngresso
+>getSessao(): Sessao
 
 >TipoIngresso (Enum): Representa o tipo do ingresso.
 Inteiro
@@ -313,7 +312,7 @@ Relacionamento: Gerencia (1:1 com Sessao)
 Relacionamento: Classifica (1:N com Filme)
 
 
-##Relacionamentos diretos entre os objetos:
+## Relacionamentos diretos entre os objetos:
 
 Compra (1:N entre Cliente e Ingresso)
 Realiza Sessao (1:N entre Sala e Sessao)
