@@ -1,18 +1,87 @@
-class Sessao {
-public:
-    Sessao(Filme* filme, Sala* sala, const std::string& horario, int capacidade);
-    const Filme* getFilme() const { return filme; }
-    const Sala* getSala() const { return sala; }
-    const std::string& getHorario() const { return horario; }
-    int getCapacidade() const { return capacidade; }
-    int getIngressosVendidos() const { return ingressosVendidos; }
-    bool sessaoEncerrada() const { return ingressosVendidos >= capacidade; }
-    bool venderIngresso(bool meioIngresso);
+#pragma once
 
-private:
-    Filme* filme;
-    Sala* sala;
-    std::string horario;
-    int capacidade;
-    int ingressosVendidos;
-};
+#include <string>
+#include <list>
+#include <memory>
+#include "Sala.hpp"
+#include "Filme.hpp"
+#include "Ingresso.hpp"
+#include "Genero.hpp"
+#include "Classificacao.hpp"
+#include "Cliente.hpp"
+#include <stdexcept>
+#include <iostream>
+#include "EnumStatusSessao.hpp"
+
+
+namespace Cinema {
+    class Sessao {
+    public:
+        // Construtor
+        Sessao(std::shared_ptr<Sala> sala, std::shared_ptr<Filme> filme, std::string horario,
+            unsigned int ingressosDisponiveis);
+
+        // Getters
+        std::string getHorario() const;
+
+        std::string setHorario(const std::string& novoHorario) const; 
+        
+        EnumStatusSessao getStatus() const;
+        
+        std::shared_ptr<Sala> getSala() const;
+
+        std::shared_ptr<Filme> getFilme() const;
+
+        // Método para abrir sessao e aplicar status
+        void abrirSessao();
+        
+        // Método para lotar sessao
+        void lotarSessao();
+
+        // Metodo para classificar filme
+        void classificarFilme(std::shared_ptr<Filme> filme, unsigned short int nota);
+
+        // Sobrecarga do operador de saída
+        friend std::ostream& operator<<(std::ostream& os, const Sessao& sessao);
+
+        //obter identificador
+        int getId() const;
+
+        //verifica ingresso disponivel
+        bool verificarIngressosDisponiveis();
+
+        //vender ingresso
+        void disponiblizarIngresso();
+
+
+    private:
+        // Ponteiro sala
+        std::shared_ptr<Sala> sala;
+        
+        //Ponteiro Filme
+        std::shared_ptr<Filme> filme;
+        
+        // horario sessao
+        std::string horario;
+        
+        //quantidade de ingressos disponiveis
+        unsigned int ingressosDisponiveis;
+
+        //status sessao
+        EnumStatusSessao status;
+        
+        //identificador sessao
+        int identificador; 
+
+        // Lista de ingressos vendidos
+        std::list<Ingresso> ingressos;
+
+        // Classificação do filme
+        std::shared_ptr<Classificacao> classificacao;
+
+        // Clientes que compraram ingressos
+        std::list<std::shared_ptr<Cliente>> clientes;
+
+    };
+
+} // namespace cinema

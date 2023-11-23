@@ -1,29 +1,94 @@
-#include "cinema.hpp"
+#include <iostream>
+#include <memory> // Para smart pointers
+#include "Cinema.hpp" // Inclua os headers necessários
+#include <stdexcept>
+
+void exibirMenu() {
+    std::cout << "\nMenu:\n";
+    std::cout << "1. Cadastrar Sala\n";
+    std::cout << "2. Listar Salas\n";
+    std::cout << "3. Cadastrar Filme\n";
+    std::cout << "4. Listar Filmes\n";
+    std::cout << "5. Cadastrar Cliente\n";
+    std::cout << "6. Listar Clientes\n";
+    std::cout << "7. Cadastrar Sessao\n";
+    std::cout << "8. Listar Sessoes\n";
+    std::cout << "9. Vender Ingresso\n";
+    std::cout << "0. Sair\n";
+    std::cout << "Escolha uma opcao: ";
+}
 
 int main() {
-    Cinema cinema;
+    // Crie instâncias dos gerenciadores e do cinema
+   Cinema::Cinema()
+    : gerenciadorFilmes(std::make_shared<GerenciadorFilmes>()),
+      gerenciadorSalas(std::make_shared<GerenciadorSalas>()),
+      gerenciadorClientes(std::make_shared<GerenciadorClientes>()),
+      gerenciadorSessao(std::make_shared<GerenciadorSessao>()) {
+    // Inicialize outras variáveis conforme necessário
+    }
 
-    Genero acao("Acao");
-    Genero comedia("Comedia");
+    char opcao;
+    do {
+        exibirMenu();
+        std::cin >> opcao;
 
-    cinema.cadastrarFilme("Filme A", 120, &acao);
-    cinema.cadastrarFilme("Filme B", 90, &comedia);
+        switch (opcao) {
+            case 1: {
+                // Cadastrar Sala
+                // Implemente a lógica aqui
+                break;
+            }
+            case 2: {
+                // Listar Salas
+                // Implemente a lógica aqui
+                break;
+            }
+            case 3: {
+                // Cadastrar Filme
+                // Implemente a lógica aqui
+                break;
+            }
+            case 4: {
+                // Listar Filmes
+                // Implemente a lógica aqui
+                break;
+            }
+            case 5: {
+                // Cadastrar Cliente
+                // Implemente a lógica aqui
+                break;
+            }
+            case 6: {
+                // Listar Clientes
+                // Implemente a lógica aqui
+                break;
+            }
+            case 7: {
+                // Cadastrar Sessao
+                // Implemente a lógica aqui
+                break;
+            }
+            case 8: {
+                // Listar Sessoes
+                // Implemente a lógica aqui
+                break;
+            }
+            case 9: {
+                // Vender Ingresso
+                // Implemente a lógica aqui
+                break;
+            }
+            case 0: {
+                std::cout << "Saindo do sistema.\n";
+                break;
+            }
+            default: {
+                std::cout << "Opcao invalida. Tente novamente.\n";
+            }
+        }
 
-    cinema.cadastrarAtor("Ator 1");
-    cinema.cadastrarAtor("Ator 2");
-
-    cinema.criarSala(1, 50);
-    cinema.criarSala(2, 30);
-
-    cinema.criarSessao(0, 0, "10:00", 50);
-    cinema.criarSessao(1, 1, "15:00", 30);
-
-    cinema.venderIngresso(0, true);
-    cinema.venderIngresso(0, false);
-    cinema.venderIngresso(1, false);
-
-    cinema.listarSessoes();
-    cinema.listarFilmesPorGenero("Comedia");
+    } while (opcao != 0);
 
     return 0;
 }

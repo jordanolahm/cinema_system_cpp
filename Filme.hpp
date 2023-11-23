@@ -1,20 +1,64 @@
+#pragma once
 #ifndef FILME_HPP
 #define FILME_HPP
 
+#include <list>
+#include <memory>
+#include "Ator.hpp"
+#include "Genero.hpp"
+#include "Classificacao.hpp"
+#include <iostream>
+#include <stdexcept>
 
-class Filme {
-public:
-    Filme(const std::string& titulo, int duracao, Genero* genero);
-    const std::string& getTitulo() const { return titulo; }
-    int getDuracao() const { return duracao; }
-    const Genero* getGenero() const { return genero; }
-    void adicionarAtor(Ator* ator, const std::string& papel);
 
-private:
-    std::string titulo;
-    int duracao;
-    Genero* genero;
-    std::unordered_map<Ator*, std::string> elenco;
-};
+namespace Cinema {
+    
+    class Filme {
+
+    public:
+        Filme(const std::string& titulo, unsigned short duracao, std::unique_ptr<Genero> genero,  std::unique_ptr<Classificacao> classificacao,
+              std::list<std::shared_ptr<Ator>> atores);
+
+        virtual ~Filme() = default; 
+
+        // Get - Utilização de smart pointer para evitar vazamento de memória
+        std::string getTitulo() const;
+        
+        unsigned short getDuracao() const;
+        
+        std::unique_ptr<Genero>  getGenero() const;
+        
+        std::unique_ptr<Classificacao> getClassificacao() const;
+        
+        std::list<std::shared_ptr<Ator>> getAtores() const;
+        
+        //rankearFilme
+        void rankear(unsigned short int nota); 
+
+        //setNota
+        void setNota(const unsigned short int nota);
+
+    private:
+        //atributo titulo
+        std::string titulo;
+        // Duração em minutos
+        unsigned short duracao; 
+        // Genero
+        std::unique_ptr<Genero> genero;
+        
+        //classificacao
+        std::unique_ptr<Classificacao> classificacao; // Usando smart pointer para Classificacao
+        
+        //lista de atores
+        std::list<std::shared_ptr<Ator>> atores;
+        
+        //nota
+        unsigned short int notaFilme; 
+
+        //Variavel de media para todos os objetos
+        static unsigned int mediaRanking;
+    };
+
+} // namespace Cinema
 
 #endif // FILME_HPP

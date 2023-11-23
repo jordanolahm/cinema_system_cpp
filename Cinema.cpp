@@ -1,85 +1,59 @@
-#include "cinema.hpp"
-#include "Ator.hpp"
+#include "Cinema.hpp"
 
+namespace Cinema {
 
-Filme::Filme(const std::string& titulo, int duracao, Genero* genero)
-    : titulo(titulo), duracao(duracao), genero(genero) {}
+    // Construtor com parâmetros
+    Cinema::Cinema(std::list<std::shared_ptr<Sala>>& salas,
+                    std::list<std::shared_ptr<Filme>>& filmes,
+                    std::list<std::shared_ptr<Sessao>>& sessoes,
+                    std::shared_ptr<GerenciadorFilmes>& gerenciadorFilmes,
+                    std::shared_ptr<GerenciadorSalas>& gerenciadorSalas,
+                    std::shared_ptr<GerenciadorClientes>& gerenciadorClientes,
+                    std::shared_ptr<GerenciadorSessao>& gerenciadorSessao)
+        : salas(salas),
+          filmes(filmes),
+          sessoes(sessoes),
+          gerenciadorFilmes(gerenciadorFilmes),
+          gerenciadorSalas(gerenciadorSalas),
+          gerenciadorClientes(gerenciadorClientes),
+          gerenciadorSessao(gerenciadorSessao) {}
 
-void Filme::adicionarAtor(Ator* ator, const std::string& papel) {
-    elenco[ator] = papel;
-}
+    // implementa destrutor
+    Cinema::~Cinema() {}
 
-Sala::Sala(int numero, int capacidade) : numero(numero), capacidade(capacidade) {}
-
-Sessao::Sessao(Filme* filme, Sala* sala, const std::string& horario, int capacidade)
-    : filme(filme), sala(sala), horario(horario), capacidade(capacidade), ingressosVendidos(0) {}
-
-bool Sessao::venderIngresso(bool meioIngresso) {
-    if (!sessaoEncerrada()) {
-        ingressosVendidos++;
-        return true;
-    }
-    return false;
-}
-
-Ingresso::Ingresso(Sessao* sessao, bool meioIngresso) : sessao(sessao), meioIngresso(meioIngresso) {}
-
-Cinema::Cinema() {}
-
-void Cinema::cadastrarFilme(const std::string& titulo, int duracao, Genero* genero) {
-    filmes.emplace_back(titulo, duracao, genero);
-}
-
-void Cinema::cadastrarAtor(const std::string& nome) {
-    atores.emplace_back(nome);
-}
-
-void Cinema::criarSala(int numero, int capacidade) {
-    salas.emplace_back(numero, capacidade);
-}
-
-void Cinema::criarSessao(int filmeIndex, int salaIndex, const std::string& horario, int capacidade) {
-    if (filmeIndex < 0 || filmeIndex >= filmes.size() ||
-        salaIndex < 0 || salaIndex >= salas.size()) {
-        std::cout << "Filme ou sala invalido." << std::endl;
-        return;
+    // Método para obter salas
+    const std::list<std::shared_ptr<Sala>>& Cinema::obterSalas() const{
+        return salas;
     }
 
-    sessoes.emplace_back(&filmes[filmeIndex], &salas[salaIndex], horario, capacidade);
-}
-
-void Cinema::venderIngresso(int sessaoIndex, bool meioIngresso) {
-    if (sessaoIndex < 0 || sessaoIndex >= sessoes.size()) {
-        std::cout << "Sessao invalida." << std::endl;
-        return;
+    // Método para obter filmes
+    const std::list<std::shared_ptr<Filme>>& Cinema::obterFilmes() const{
+        return filmes;
     }
 
-    Sessao& sessao = sessoes[sessaoIndex];
-    if (!sessao.sessaoEncerrada()) {
-        ingressos.emplace_back(&sessao, meioIngresso);
-        sessao.venderIngresso(meioIngresso);
-    } else {
-        std::cout << "Sessao encerrada. Nao e possivel comprar ingressos." << std::endl;
+    // Método para obter sessões
+    const std::list<std::shared_ptr<Sessao>>& Cinema::obterSessoes() const{
+        return sessoes;
     }
-}
 
-void Cinema::listarSessoes() const {
-    std::cout << "Lista de Sessoes:" << std::endl;
-    for (size_t i = 0; i < sessoes.size(); ++i) {
-        const Sessao& sessao = sessoes[i];
-        std::cout << i + 1 << ". " << sessao.getHorario() << " - "
-                  << sessao.getFilme()->getTitulo() << " - Sala "
-                  << sessao.getSala()->getNumero() << " - Ingressos Vendidos: "
-                  << sessao.getIngressosVendidos() << "/" << sessao.getCapacidade() << std::endl;
+    // Método para obter o gerenciador de salas
+    std::shared_ptr<GerenciadorSalas> Cinema::obterGerenciadorSalas() {
+        return gerenciadorSalas;
     }
-}
 
-void Cinema::listarFilmesPorGenero(const std::string& generoNome) const {
-    std::cout << "Filmes do genero " << generoNome << ":" << std::endl;
-    for (const Filme& filme : filmes) {
-        if (filme.getGenero()->getNome() == generoNome) {
-            std::cout << " - " << filme.getTitulo() << std::endl;
-        }
+    // Método para obter o gerenciador de filmes
+    std::shared_ptr<GerenciadorFilmes> Cinema::obterGerenciadorFilmes() {
+        return gerenciadorFilmes;
     }
-}
 
+    // Método para obter o gerenciador de clientes
+    std::shared_ptr<GerenciadorClientes> Cinema::obterGerenciadorClientes() {
+        return gerenciadorClientes;
+    }
+
+    // Método para obter o gerenciador de sessão
+    std::shared_ptr<GerenciadorSessao> Cinema::obterGerenciadorSessao() {
+        return gerenciadorSessao;
+    }
+
+} // namespace cinema

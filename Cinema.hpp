@@ -1,46 +1,51 @@
+#pragma once
+
 #ifndef CINEMA_HPP
 #define CINEMA_HPP
 
-// import STL libs
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <unordered_map>
-
-//import libs 
-
-#include "Ator.hpp"
-#include "Filme.hpp"
+#include <list>
+#include <memory>
 #include "Sala.hpp"
+#include "Filme.hpp"
 #include "Sessao.hpp"
-#include "Ingresso.hpp"
-#include "Genero.hpp"
+#include "GerenciadorFilmes.hpp"
+#include "GerenciadorSalas.hpp"
+#include "GerenciadorClientes.hpp"
+#include "GerenciadorSessao.hpp"
 
+namespace Cinema {
 class Cinema {
 
-public:
-    //construtor
-    Cinema();
+    public:
+        Cinema(std::list<std::shared_ptr<Sala>>& salas,
+               std::list<std::shared_ptr<Filme>>& filmes,
+               std::list<std::shared_ptr<Sessao>>& sessoes,
+               std::shared_ptr<GerenciadorFilmes>& gerenciadorFilmes,
+               std::shared_ptr<GerenciadorSalas>& gerenciadorSalas,
+               std::shared_ptr<GerenciadorClientes>& gerenciadorClientes,
+               std::shared_ptr<GerenciadorSessao>& gerenciadorSessao);
 
-    //destrutor
-    ~Cinema(); 
-    
-    void cadastrarFilme(const std::string& titulo, int duracao, Genero* genero);
-    void cadastrarAtor(const std::string& nome);
-    void criarSala(int numero, int capacidade);
-    void criarSessao(int filmeIndex, int salaIndex, const std::string& horario, int capacidade);
-    void venderIngresso(int sessaoIndex, bool meioIngresso);
-    void listarSessoes() const;
-    void listarFilmesPorGenero(const std::string& generoNome) const;
+        // Destrutor padrão
+        virtual ~Cinema() = default;
 
-private:
-    std::vector<Filme> filmes;
-    std::vector<Ator> atores;
-    std::vector<Genero> generos;
-    std::vector<Sala> salas;
-    std::vector<Sessao> sessoes;
-    std::vector<Ingresso> ingressos;
+        const std::list<std::shared_ptr<Sala>>& obterSalas() const;
+        const std::list<std::shared_ptr<Filme>>& obterFilmes() const;
+        const std::list<std::shared_ptr<Sessao>>& obterSessoes() const;
+        std::shared_ptr<GerenciadorSalas> obterGerenciadorSalas();
+        std::shared_ptr<GerenciadorFilmes> obterGerenciadorFilmes();
+        std::shared_ptr<GerenciadorClientes> obterGerenciadorClientes();
+        std::shared_ptr<GerenciadorSessao> obterGerenciadorSessao();
+
+    private:
+        std::list<std::shared_ptr<Sala>> salas;
+        std::list<std::shared_ptr<Filme>> filmes;
+        std::list<std::shared_ptr<Sessao>> sessoes;
+        std::shared_ptr<GerenciadorFilmes> gerenciadorFilmes;
+        std::shared_ptr<GerenciadorSalas> gerenciadorSalas;
+        std::shared_ptr<GerenciadorClientes> gerenciadorClientes;
+        std::shared_ptr<GerenciadorSessao> gerenciadorSessao;
 };
+
+}
 
 #endif // CINEMA_HPP
