@@ -8,15 +8,40 @@ namespace Cinema {
     GerenciadorSessao::~GerenciadorSessao() {}
 
     void GerenciadorSessao::cadastrarSessao(std::shared_ptr<Sessao> sessao) {
-        sessoes.push_back(sessao);
+        try {
+            if (!sessao) {
+                throw std::invalid_argument("Erro ao cadastrar uma sessao nula.");
+            }
+            sessoes.push_back(sessao);
+        } catch (const std::exception& e) {
+            std::cerr << "Erro ao cadastrar sessao: " << e.what() << std::endl;
+            throw;
+        }
     }
 
     std::list<std::shared_ptr<Sessao>> GerenciadorSessao::listarTodasSessoes() {
-        return sessoes;
+        return this->sessoes;
     }
+    
+    void GerenciadorSessao::removerSessao(int identificador) {
+        try {
+            auto it = sessoes.begin();
+            while (it != sessoes.end()) {
+                if ((*it)->getId() == identificador) {
+                    it = sessoes.erase(it);
+                    break;
+                } else {
+                    ++it;
+                }
+            }
 
-    void GerenciadorSessao::removerSessao(std::shared_ptr<Sessao> sessao) {
-        sessoes.remove(sessao);
+            if (it == sessoes.end()) {
+                throw std::runtime_error("Sessao não encontrada para remoção.");
+            }
+        } catch (const std::exception& e) {
+            std::cerr << "Erro ao remover sessao: " << e.what() << std::endl;
+            throw;
+        }
     }
 
 

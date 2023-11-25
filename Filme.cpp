@@ -6,7 +6,7 @@ namespace Cinema {
 
     Filme::Filme(const std::string& titulo, unsigned short duracao, std::unique_ptr<Genero> genero,
                  std::unique_ptr<Classificacao> classificacao, std::list<std::shared_ptr<Ator>> atores)
-        : titulo(titulo), duracao(duracao), genero(std::move(genero)), classificacao(std::move(classificacao)), atores(std::move(atores)), notaFilme(0) {}
+        : titulo(titulo), duracao(duracao),  genero(std::move(genero)), classificacao(std::move(classificacao)), atores(atores), notaFilme(0) {}
 
     std::string Filme::getTitulo() const {
         return titulo;
@@ -50,6 +50,16 @@ namespace Cinema {
         } catch (const std::exception& e) {
             std::cerr << "Erro inesperado ao classificar o filme: " << e.what() << "\n";
         }
+    }
+
+    bool Filme::operator==(const Filme& outro) const {
+       // Assume-se que existe um atributo chamado 'titulo' como critério de igualdade
+        return titulo == outro.titulo;
+    }
+
+    bool Filme::operator!=(const Filme& outro) const {
+        // Invertendo a lógica de igualdade para obter desigualdade
+        return !(*this == outro);
     }
 
 } // namespace Cinema

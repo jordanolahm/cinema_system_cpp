@@ -19,7 +19,7 @@ namespace Cinema {
     public:
         // Construtor
         Sessao(std::shared_ptr<Sala> sala, std::shared_ptr<Filme> filme, std::string horario,
-            unsigned int ingressosDisponiveis);
+            unsigned int ingressosDisponiveis, unsigned int identificador);
 
         // Getters
         std::string getHorario() const;
@@ -45,13 +45,16 @@ namespace Cinema {
         friend std::ostream& operator<<(std::ostream& os, const Sessao& sessao);
 
         //obter identificador
-        int getId() const;
+        unsigned int  getId() const;
 
         //verifica ingresso disponivel
         bool verificarIngressosDisponiveis();
 
         //vender ingresso
         void disponiblizarIngresso();
+
+        //atualiza ingressos com base na capacidade da sala
+        void ajustarIngressosDisponiveis(); 
 
 
     private:
@@ -71,7 +74,7 @@ namespace Cinema {
         EnumStatusSessao status;
         
         //identificador sessao
-        int identificador; 
+        unsigned int identificador; 
 
         // Lista de ingressos vendidos
         std::list<Ingresso> ingressos;

@@ -14,6 +14,7 @@ namespace Cinema {
         return idadeMinima;
     }
 
+    //get Descricao
     const std::string& Classificacao::getDescricao() const {
         return descricao;
     }
@@ -22,7 +23,8 @@ namespace Cinema {
     void Classificacao::setIdadeMinima(unsigned int novaIdadeMinima) {
         this->idadeMinima = novaIdadeMinima;
     }
-
+    
+    //set Descricao
     void Classificacao::setDescricao(const std::string& novaDescricao) {
         this->descricao = novaDescricao;
     }

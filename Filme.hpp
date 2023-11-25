@@ -19,6 +19,7 @@ namespace Cinema {
         Filme(const std::string& titulo, unsigned short duracao, std::unique_ptr<Genero> genero,  std::unique_ptr<Classificacao> classificacao,
               std::list<std::shared_ptr<Ator>> atores);
 
+        //destrutor virtual
         virtual ~Filme() = default; 
 
         // Get - Utilização de smart pointer para evitar vazamento de memória
@@ -37,6 +38,10 @@ namespace Cinema {
 
         //setNota
         void setNota(const unsigned short int nota);
+
+        // Sobrecarga dos operadores de igualdade e desigualdade
+        bool operator==(const Filme& outro) const;
+        bool operator!=(const Filme& outro) const;
 
     private:
         //atributo titulo

@@ -12,16 +12,21 @@
 
 namespace Cinema {
     class Ingresso {
+    
     public:
         Ingresso(std::shared_ptr<Sessao> sessao, std::shared_ptr<Cliente> cliente, const EnumTipoIngresso tipo);
+        
         // Getters
         std::shared_ptr<Sessao> getSessao() const;
         std::shared_ptr<Cliente> getCliente() const;
         EnumTipoIngresso getTipo() const;
 
     private:
+        //sessao 
         std::shared_ptr<Sessao> sessao;
-        std::shared_ptr<Cliente> cliente;
+        //cliente
+        std::shared_ptr<Cliente> cliente;    
+        //enum tipo 
         EnumTipoIngresso tipo;
     };
 

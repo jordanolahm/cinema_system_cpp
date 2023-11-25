@@ -32,7 +32,7 @@ namespace Cinema {
     }
 
     // Métodos
-       void Cliente::comprarIngresso(std::shared_ptr<Sessao> sessao, std::shared_ptr<Ingresso> ingressos) {
+    void Cliente::comprarIngresso(std::shared_ptr<Sessao> sessao, std::shared_ptr<Ingresso> ingressos) {
         try {
             // Verificar se há ingressos disponíveis na sessão
             if (sessao->verificarIngressosDisponiveis() && sessao) {
@@ -66,6 +66,15 @@ namespace Cinema {
             std::cerr << "Erro ao listar ingressos: " << e.what() << std::endl;
             return {};
         }
+    }
+
+    
+    bool Cliente::operator==(const Cliente& outro) const {
+        return cpf == outro.cpf;
+    }
+
+    bool Cliente::operator!=(const Cliente& outro) const {
+        return !(*this == outro);
     }
 
 } // namespace Cinema
