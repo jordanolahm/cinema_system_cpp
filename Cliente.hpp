@@ -37,6 +37,9 @@ namespace Cinema {
         bool operator==(const Cliente& outro) const;
         bool operator!=(const Cliente& outro) const;
 
+        // Sobrecarga do operador de saída
+        friend std::ostream& operator<<(std::ostream& os, const Cliente& cliente);
+
     private:
         std::string nome;
         unsigned short int idade;

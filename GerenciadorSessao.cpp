@@ -23,7 +23,7 @@ namespace Cinema {
         return this->sessoes;
     }
     
-    void GerenciadorSessao::removerSessao(int identificador) {
+    void GerenciadorSessao::removerSessao(unsigned int identificador) {
         try {
             auto it = sessoes.begin();
             while (it != sessoes.end()) {

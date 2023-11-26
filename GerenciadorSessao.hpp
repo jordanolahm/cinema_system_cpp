@@ -26,7 +26,7 @@ namespace Cinema {
         virtual std::list<std::shared_ptr<Sessao>> listarTodasSessoes();
 
         //remover uma sessão da lista
-        virtual void removerSessao(int identificador);
+        virtual void removerSessao(unsigned int identificador);
 
     private:
         // lista de sessões apontando para sessão

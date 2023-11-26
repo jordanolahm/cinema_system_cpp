@@ -31,7 +31,6 @@ namespace Cinema {
         this->cpf = cpf;
     }
 
-    // Métodos
     void Cliente::comprarIngresso(std::shared_ptr<Sessao> sessao, std::shared_ptr<Ingresso> ingressos) {
         try {
             // Verificar se há ingressos disponíveis na sessão
@@ -75,6 +74,11 @@ namespace Cinema {
 
     bool Cliente::operator!=(const Cliente& outro) const {
         return !(*this == outro);
+    }
+
+    std::ostream& operator<<(std::ostream& os, const Cliente& cliente) {
+        os << "Nome: " << cliente.nome << ", Idade: " << cliente.idade << ", CPF: " << cliente.cpf;
+        return os;
     }
 
 } // namespace Cinema

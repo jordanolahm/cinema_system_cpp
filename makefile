@@ -3,41 +3,50 @@ nomePrograma=aula
 
 all: $(nomePrograma)
 
-$(nomePrograma): main.o Pessoa.o Disciplina.o SalaAula.o ConteudoMinistrado.o Console.o Professor.o ProfessorAdjunto.o Engenheiro.o ProfessorEngenheiro.o CPFInvalidoException.o
+$(nomePrograma): main.o Ator.o Cinema.o Classificacao.o Cliente.o Filme.o Genero.o GerenciadorClientes.o GerenciadorFilmes.o GerenciadorSalas.o GerenciadorSessao.o Ingresso.o Sala.o Ingresso.o
 	g++ -o $(nomePrograma) main.o Pessoa.o Disciplina.o SalaAula.o ConteudoMinistrado.o Console.o Professor.o ProfessorAdjunto.o Engenheiro.o ProfessorEngenheiro.o CPFInvalidoException.o $(parametrosCompilacao)
 
 main.o: main.cpp
 	g++ -c main.cpp $(parametrosCompilacao)
 
-Pessoa.o: Pessoa.hpp Pessoa.cpp
-	g++ -c Pessoa.cpp $(parametrosCompilacao)
+Ator.o: Ator.hpp Ator.cpp
+	g++ -c Ator.cpp $(parametrosCompilacao)
 
-Professor.o: Professor.hpp Professor.cpp
-	g++ -c Professor.cpp $(parametrosCompilacao)
+Cinema.o: Cinema.hpp Cinema.cpp
+	g++ -c Cinema.cpp $(parametrosCompilacao)
 
-ProfessorAdjunto.o: ProfessorAdjunto.hpp ProfessorAdjunto.cpp
-	g++ -c ProfessorAdjunto.cpp $(parametrosCompilacao)
+Classificacao.o: Classificacao.hpp Classificacao.cpp
+	g++ -c Classificacao.cpp $(parametrosCompilacao)
 
-Engenheiro.o: Engenheiro.hpp Engenheiro.cpp
-	g++ -c Engenheiro.cpp $(parametrosCompilacao)
+Cliente.o: Cliente.hpp Cliente.cpp
+	g++ -c Cliente.cpp $(parametrosCompilacao)
 
-ProfessorEngenheiro.o: ProfessorEngenheiro.hpp ProfessorEngenheiro.cpp
-	g++ -c ProfessorEngenheiro.cpp $(parametrosCompilacao)
+Filme.o: Filme.hpp Filme.cpp
+	g++ -c Filme.cpp $(parametrosCompilacao)
 
-Disciplina.o: Disciplina.hpp Disciplina.cpp
-	g++ -c Disciplina.cpp $(parametrosCompilacao)
+Genero.o: Genero.hpp Genero.cpp
+	g++ -c Genero.cpp $(parametrosCompilacao)
 
-SalaAula.o: SalaAula.hpp SalaAula.cpp
-	g++ -c SalaAula.cpp $(parametrosCompilacao)
+GerenciadorClientes.o: GerenciadorClientes.hpp GerenciadorClientes.cpp
+	g++ -c GerenciadorClientes.cpp $(parametrosCompilacao)
 
-ConteudoMinistrado.o: ConteudoMinistrado.hpp ConteudoMinistrado.cpp
-	g++ -c ConteudoMinistrado.cpp $(parametrosCompilacao)
+GerenciadorFilmes.o: GerenciadorFilmes.hpp GerenciadorFilmes.cpp
+	g++ -c GerenciadorFilmes.cpp $(parametrosCompilacao)
 
-Console.o: Console.hpp Console.cpp
-	g++ -c Console.cpp $(parametrosCompilacao)
+GerenciadorSalas.o: GerenciadorSalas.hpp GerenciadorSalas.cpp
+	g++ -c GerenciadorSalas.cpp $(parametrosCompilacao)
 
-CPFInvalidoException.o: CPFInvalidoException.hpp CPFInvalidoException.cpp
-	g++ -c CPFInvalidoException.cpp $(parametrosCompilacao)
+GerenciadorSessao.o: GerenciadorSessao.hpp GerenciadorSessao.cpp
+	g++ -c GerenciadorSessao.cpp $(parametrosCompilacao)
+
+Ingresso.o: Ingresso.hpp Ingresso.cpp
+	g++ -c Ingresso.cpp $(parametrosCompilacao)	
+
+Sala.o: Sala.hpp Sala.cpp
+	g++ -c Sala.cpp $(parametrosCompilacao)	
+
+Ingresso.o: Ingresso.hpp Ingresso.cpp
+	g++ -c Ingresso.cpp $(parametrosCompilacao)	
 
 clean:
 	rm -f *.o *.gch $(nomePrograma)

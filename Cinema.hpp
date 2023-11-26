@@ -8,6 +8,7 @@
 #include "Sala.hpp"
 #include "Filme.hpp"
 #include "Sessao.hpp"
+#include "Cliente.hpp"
 #include "GerenciadorFilmes.hpp"
 #include "GerenciadorSalas.hpp"
 #include "GerenciadorClientes.hpp"
